@@ -1,41 +1,111 @@
-<link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-<div class="bg-gray-50 min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk Kami</title>
+  <style>
+    body {
+      background-color: #f9fafb;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #374151;
+    }
 
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Produk Kami</h1>
-            <p class="mt-2 text-lg text-gray-600">Kualitas Terbaik.</p>
-        </div>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
 
-        <div class="overflow-x auto">
-            <table class="table-auto w-full text-left text-gray-500">
-                <thead>
-                    <tr>
-                        <th class="px-6 pt-4 pb-1 text-left text-xs leading-4 font-medium text-gray-900 tracking-wider uppercase">Name</th>
-                        <th class="px-6 pt-4 pb-1 text-left text-xs leading-4 font-medium text-gray-900 tracking-wider uppercase">Price</th>
-                        <th class="px-6 pt-4 pb-1 text-left text-xs leading-4 font-medium text-gray-900 tracking-wider uppercase">Description</th>
-                        <th class="px-6 pt-4 pb-1 text-left text-xs leading-4 font-medium text-gray-900 tracking-wider uppercase">Image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($products as $product)
-                        <tr>
-                            <td class="border-b border-gray-200 px-6 py-4">{{ $product->name }}</td>
-                            <td class="border-b border-gray-200 px-6 py-4">Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
-                            <td class="border-b border-gray-200 px-6 py-4">{{ $product->description }}</td>
-                            <td class="border-b border-gray-200 px-6 py-4">
-                                <img class="w-24 h-24 object-cover" src="{{ $product->image_url ?? 'https://placehold.co/400x300/000000/FFF?text=No+Image' }}" alt="{{ $product->name }}">
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td class="border-b border-gray-200 px-6 py-4 text-center" colspan="4">No Products Found</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+    .text-center {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
 
+    .title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: #6b7280;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    thead {
+      background-color: #f3f4f6;
+    }
+
+    th {
+      padding: 1rem 1.5rem 0.25rem 1.5rem;
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #111827;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    .text-center-colspan {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="text-center">
+      <h1 class="title">Produk Kami</h1>
+      <p class="subtitle">Kualitas Terbaik.</p>
     </div>
-</div>
 
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Deskripsi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse ($products as $product)
+            <tr>
+              <td>{{ $product->name }}</td>
+              <td>Rp. {{ number_format($product->harga, 0, ',', '.') }}</td>
+              <td>{{ $product->deskripsi }}</td>
+            </tr>
+          @empty
+            <tr>
+              <td colspan="3" class="text-center-colspan">No Products Found</td>
+            </tr>
+          @endforelse
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+</html>

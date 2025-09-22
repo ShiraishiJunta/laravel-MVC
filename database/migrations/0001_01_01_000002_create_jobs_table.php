@@ -53,6 +53,5 @@ return new class extends Migration
         Schema::dropIfExists('jobs');
         Schema::dropIfExists('job_batches');
         Schema::dropIfExists('failed_jobs');
-        Schema::dropIfExists('products');
     }
 };

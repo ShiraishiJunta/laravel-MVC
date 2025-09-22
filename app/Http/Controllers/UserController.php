@@ -8,6 +8,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('halo.dani');
+        return view('landing.achmad');
     }
 }
